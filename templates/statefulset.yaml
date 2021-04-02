@@ -194,7 +194,7 @@ spec:
           prop_replace nifi.cluster.node.address ${FQDN}
           prop_replace nifi.zookeeper.connect.string ${NIFI_ZOOKEEPER_CONNECT_STRING}
           prop_replace nifi.web.http.host ${FQDN}
-{{- if .Values.auth.oidc.enabled }}
+
 {{- if .Values.properties.clusterSecure }}
           # Update nifi.properties for security properties
           prop_replace nifi.web.https.host ${FQDN}
@@ -220,7 +220,6 @@ spec:
   {{- range $prop, $val := .Values.properties.safetyValve }}
           prop_replace {{ $prop }} "{{ $val }}" nifi.properties
   {{- end }}
-{{- end }}
 {{- end }}
 
 
